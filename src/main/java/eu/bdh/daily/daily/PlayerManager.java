@@ -32,14 +32,14 @@ public class PlayerManager {
     private static PlayerManager playerManager;
 
     // HashMap mit Spielernamen und Locations, Player-Objekte wär zu überladen
-    private HashMap<String, Location> playercheckpoints = new HashMap<String, Location>();
+    private HashMap<String, Location> playercheckpoints = new HashMap<>();
 
     /**
      * Setzt die Location zum Checkpoint eines Spielers
      * @param playername der Spielername
      * @param location die Location wo der Checkpoint ausgelöst wurde
      */
-    public void setCheckpoint(String playername, Location location) {
+    void setCheckpoint(String playername, Location location) {
         playercheckpoints.put(playername, location);
     }
 

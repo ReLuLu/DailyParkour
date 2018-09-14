@@ -52,6 +52,8 @@ public class DailyListener implements Listener {
             Material.JUNGLE_PRESSURE_PLATE, Material.ACACIA_PRESSURE_PLATE
     );
 
+    private PlayerManager playerman = PlayerManager.getPlayerManager();
+
     /**
      * Handelt den Vorgang eines ausgelösten Checkpoints ab
      * @param plinev das PlayerInteractEvent
@@ -74,17 +76,17 @@ public class DailyListener implements Listener {
 
                 // Knopf obendrauf aber nicht an der Decke
                 if((sw.getFace() == Face.FLOOR) && (bl.getRelative(BlockFace.DOWN).getType() == Material.GOLD_BLOCK)) {
-                    PlayerManager.getPlayerManager().setCheckpoint(p.getDisplayName(), p.getLocation());
+                    playerman.setCheckpoint(p.getUniqueId(), p.getLocation());
                 }
 
                 // Knopf drumrum, schaut nach dem Block an dem face wo Knopf dranklebt
                 else if(bl.getRelative(sw.getFacing().getOppositeFace()).getType() == Material.GOLD_BLOCK) {
-                    PlayerManager.getPlayerManager().setCheckpoint(p.getDisplayName(), p.getLocation());
+                    playerman.setCheckpoint(p.getUniqueId(), p.getLocation());
                 }
 
                 // Knopf an der Decke aber nur wenn dort ein Goldblock ist
                 else if((sw.getFace() == Face.CEILING) && (bl.getRelative(BlockFace.UP).getType() == Material.GOLD_BLOCK)) {
-                    PlayerManager.getPlayerManager().setCheckpoint(p.getDisplayName(), p.getLocation());
+                    playerman.setCheckpoint(p.getUniqueId(), p.getLocation());
                 }
             }
 
@@ -104,7 +106,7 @@ public class DailyListener implements Listener {
 
                 // Druckplatten sind ja immer auf einem Untergrund, daher DOWN
                 if(bl.getRelative(BlockFace.DOWN).getType() == Material.GOLD_BLOCK) {
-                    PlayerManager.getPlayerManager().setCheckpoint(p.getDisplayName(), p.getLocation());
+                    playerman.setCheckpoint(p.getUniqueId(), p.getLocation());
                 }
             }
         }

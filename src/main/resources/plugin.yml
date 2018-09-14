@@ -1,6 +1,13 @@
 name: BdHRDaily
 main: eu.bdh.daily.BdHDaily
-version: 0.1
-author: ReLuLu,Clive
+version: 2.0.0
+author: ReLuLu, Clive
 api-version: 1.13
 description: New version of the daily plugin for the BdHR Server
+commands:
+  dcheck:
+    description:
+    usage: /dcheck
+    permission:
+permissions:
+  daily.player:

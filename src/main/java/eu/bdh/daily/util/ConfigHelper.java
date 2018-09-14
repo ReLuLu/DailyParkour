@@ -61,6 +61,9 @@ public class ConfigHelper {
         this.configName = "error";
     }
 
+    /**
+     * Anlage der default Config File.
+     */
     public void createDefaultConfig() {
         File dataFolder = plugin.getDataFolder();
         try {
@@ -83,6 +86,10 @@ public class ConfigHelper {
         }
     }
 
+    /**
+     * Anlage eigener Config Files.
+     * @return Gibt die FileConfiguration zurück die zum Zugriff auf die Datei benötigt wird.
+     */
     public FileConfiguration createYamlFile(){
         File file = new File(plugin.getDataFolder(), configName + ".yml");
 

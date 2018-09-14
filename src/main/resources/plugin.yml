@@ -1,0 +1,6 @@
+name: BdHRDaily
+main: eu.bdh.daily.BdHDaily
+version: 0.1
+author: ReLuLu,Clive
+api-version: 1.13
+description: New version of the daily plugin for the BdHR Server

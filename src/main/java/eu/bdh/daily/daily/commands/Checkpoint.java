@@ -34,6 +34,8 @@ import org.bukkit.entity.Player;
  */
 public class Checkpoint implements CommandExecutor {
 
+    private PlayerManager playerman = PlayerManager.getPlayerManager();
+
     /**
      * Handelt den /dcheck Befehl ab, der von einem Spieler ausgeht
      * @param sender wer hat den Befehl abgesetzt
@@ -51,7 +53,7 @@ public class Checkpoint implements CommandExecutor {
             player.sendMessage("Zurück zum Checkpoint");
             //TODO zurück zum CP Meldung
             //TODO case noch kein CP erreicht bzw. CP am Dailystart setzen
-            player.teleport(PlayerManager.getPlayerManager().getCheckpoint(player.getDisplayName()));
+            player.teleport(playerman.getCheckpoint(player.getUniqueId()));
             return true;
         }
 

@@ -1,0 +1,5 @@
+database:
+  url: jdbc:mysql://localhost/test
+  user: gs
+  password: aq23ed
+world: daily

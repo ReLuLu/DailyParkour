@@ -33,7 +33,6 @@ public class PlayerManager {
     private static PlayerManager playerManager;
 
     // HashMap mit Spielernamen und Locations, Player-Objekte wär zu überladen
-    //private HashMap<String, Location> playercheckpoints = new HashMap<>();
     private HashMap<UUID, Location> playercheckpoints = new HashMap<>();
 
     /**

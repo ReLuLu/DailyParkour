@@ -54,7 +54,7 @@ public class PlayerManager {
     }
 
     /**
-     * Statischer Getter für den PlayerManager, erzeugt einen neuen
+     * Statischer Getter für den PlayerManager, erzeugt einen neuen wenn noch keiner vorhanden ist
      * @return das PlayerManager Objekt
      */
     public static PlayerManager getPlayerManager() {

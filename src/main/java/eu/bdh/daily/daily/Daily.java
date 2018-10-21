@@ -38,7 +38,7 @@ public class Daily {
     private float votelook;
     private float votelength;
     private boolean active;         // (In)Aktivitätsstatus
-    private int finishcount;        // Anzahl Spieler, die das Daily
+    private int finishcount;        // Anzahl Spieler, die das Daily im aktuellen Wertungsdurchlauf beendet haben
     private long lastplayed;        // Zeitpunkt wann das Daily zuletzt dran war in epoch
 
 
@@ -51,6 +51,8 @@ public class Daily {
      * @return start die Startlocation
      */
     public Location getDailyStart() {
+        //TODO DB Kommunikation
+        //TODO pseudo-Location mit Koords, world und Blickrichtung initialisieren
         return start;
     }
 

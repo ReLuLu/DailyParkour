@@ -97,12 +97,29 @@ public class Daily {
     /**
      * Setzt den Autor eines Dailies, wird für die Einrichtung gebraucht.
      * @param newauthor der 'neue' Autor
-     * @return ob die Eigenschaft
+     * @return ob die Eigenschaft gesetzt wurde oder nicht
      */
     public boolean setAuthor(String newauthor) {
         this.author = newauthor;
         //TODO DB Kommunikation
         return true;
+    }
+
+    /**
+     * Gibt die Durchschnittszeit vom letzten Durchlauf als int in Sekunden zurück
+     * @return averageduration Durchschnittszeit in Sekunden
+     */
+    public int getAverageduration() {
+        return this.averageduration;
+    }
+
+    /**
+     * Gibt zurück, ob das Daily sich in der Map/Daily-Rotation befindet (aktiv)
+     * oder ob dieses sich zurzeit nicht in der Rotation befindet (inaktiv)
+     * @return active Status aktiv / inaktiv
+     */
+    public boolean isActive() {
+        return this.active;
     }
 
 }

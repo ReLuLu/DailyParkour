@@ -1,4 +1,4 @@
-# Contributor Covenant Code of Conduct
+# BdHRDaily Code of Conduct
 
 ## Our Pledge
 

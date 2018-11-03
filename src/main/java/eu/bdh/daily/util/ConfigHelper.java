@@ -19,6 +19,7 @@
 
 package eu.bdh.daily.util;
 
+import com.google.inject.Inject;
 import eu.bdh.daily.BdHDaily;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -46,6 +47,7 @@ public class ConfigHelper {
      * @param configName Parameter wird benötigt, wenn nicht die Standard Config File sondern eine andere Config File erzeugt werden soll.
      * @param plugin BdHDaily Objekt zum Zugriff auf das Plugin
      */
+    @Inject
     public ConfigHelper(BdHDaily plugin, String configName){
         this.configName = configName;
         this.plugin = plugin;
@@ -70,7 +72,7 @@ public class ConfigHelper {
             if (!dataFolder.exists()) {
                 boolean result = dataFolder.mkdirs();
                 if (!result){
-                    Bukkit.getPluginManager().disablePlugin(BdHDaily.getPlugin());
+                    Bukkit.getPluginManager().disablePlugin(plugin);
                     log.log(Level.SEVERE,"Config file not creatable!");
                 }
             }
@@ -96,7 +98,7 @@ public class ConfigHelper {
         if (!file.exists()) {
             boolean result = file.getParentFile().mkdirs();
             if (!result){
-                Bukkit.getPluginManager().disablePlugin(BdHDaily.getPlugin());
+                Bukkit.getPluginManager().disablePlugin(plugin);
                 log.log(Level.SEVERE,"Config file not creatable!");
             }
             plugin.saveResource(configName + ".yml", false);

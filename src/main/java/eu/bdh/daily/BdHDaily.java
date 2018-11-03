@@ -42,7 +42,7 @@ public class BdHDaily extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new DailyListener(), this);
 
         // die Befehle registrieren
-        this.getCommand("dcheck").setExecutor(new Checkpoint());
+        this.getCommand("dcheck").setExecutor(new Checkpoint(this));
 
     }
 

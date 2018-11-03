@@ -25,8 +25,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-
+import org.bukkit.plugin.Plugin;
 
 /**
  * @author René
@@ -35,6 +34,11 @@ import org.bukkit.entity.Player;
 public class Checkpoint implements CommandExecutor {
 
     private PlayerManager playerman = PlayerManager.getPlayerManager();
+    private Plugin plugin;
+
+    public Checkpoint(Plugin plugin) {
+        this.plugin = plugin;
+    }
 
     /**
      * Handelt den /dcheck Befehl ab, der von einem Spieler ausgeht
@@ -50,13 +54,18 @@ public class Checkpoint implements CommandExecutor {
         // nur vom Spieler zu benutzen
         if(sender instanceof Player) {
             Player player = (Player)sender;
-            player.sendMessage("Zurück zum Checkpoint");
-            //TODO zurück zum CP Meldung
-            //TODO case noch kein CP erreicht bzw. CP am Dailystart setzen
-            player.teleport(playerman.getCheckpoint(player.getUniqueId()));
-            return true;
-        }
+            if(player.getWorld().getName().equalsIgnoreCase(plugin.getConfig().getString("world"))) {
 
+                if(playerman.hasCheckpoint(player.getUniqueId())) {
+                    player.teleport(playerman.getCheckpoint(player.getUniqueId()));
+                    // TODO mit MessageHandler irgendwann schöne Ausgaben machen
+                    player.sendMessage("Zurück zum Checkpoint");
+                } else {
+                    player.sendMessage("Noch keinen Checkpoint erreicht");
+                }
+                return true;
+            }
+        }
         return false;
     }
 

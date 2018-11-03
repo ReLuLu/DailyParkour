@@ -54,6 +54,15 @@ public class PlayerManager {
     }
 
     /**
+     * Gibt zurück, ob ein Spieler bereits einen Checkpoint ausgelöst hat
+     * @param uuid die UUID des Spielers
+     * @return ist der Spieler in der CP Liste oder nicht
+     */
+    public boolean hasCheckpoint(UUID uuid) {
+        return playercheckpoints.containsKey(uuid);
+    }
+
+    /**
      * Statischer Getter für den PlayerManager, erzeugt einen neuen wenn noch keiner vorhanden ist
      * @return das PlayerManager Objekt
      */

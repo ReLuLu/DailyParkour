@@ -22,7 +22,6 @@ package eu.bdh.daily;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import eu.bdh.daily.daily.DailyListener;
-import eu.bdh.daily.daily.commands.Checkpoint;
 import eu.bdh.daily.database.DatabaseManager;
 import eu.bdh.daily.database.HibernateUtil;
 import eu.bdh.daily.util.ConfigHelper;

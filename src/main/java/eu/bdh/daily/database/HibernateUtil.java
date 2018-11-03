@@ -73,11 +73,11 @@ public class HibernateUtil extends AbstractModule {
         return configuration.buildSessionFactory(serviceRegistry);
     }
 
-    public void destroy(){
+    void destroy(){
         sessionFactory.close();
     }
 
-    public SessionFactory getSessionFactory() {
+    SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 }

@@ -20,6 +20,7 @@
 package eu.bdh.daily.daily;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 import org.bukkit.Location;
 
@@ -32,24 +33,24 @@ public class PlayerManager {
     private static PlayerManager playerManager;
 
     // HashMap mit Spielernamen und Locations, Player-Objekte wär zu überladen
-    private HashMap<String, Location> playercheckpoints = new HashMap<String, Location>();
+    private HashMap<UUID, Location> playercheckpoints = new HashMap<>();
 
     /**
      * Setzt die Location zum Checkpoint eines Spielers
-     * @param playername der Spielername
+     * @param uuid die UUID des Spielers
      * @param location die Location wo der Checkpoint ausgelöst wurde
      */
-    public void setCheckpoint(String playername, Location location) {
-        playercheckpoints.put(playername, location);
+    void setCheckpoint(UUID uuid, Location location) {
+        playercheckpoints.put(uuid, location);
     }
 
     /**
      * Gibt die Location zum Checkpoint eines Spielers zurück
-     * @param playername der Spielername
+     * @param uuid die UUID des Spielers
      * @return die Location wo zuletzt ein Checkpoint ausgelöst wurde
      */
-    public Location getCheckpoint(String playername) {
-        return playercheckpoints.get(playername);
+    public Location getCheckpoint(UUID uuid) {
+        return playercheckpoints.get(uuid);
     }
 
     /**

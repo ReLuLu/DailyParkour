@@ -19,30 +19,40 @@
 
 package eu.bdh.daily;
 
-import eu.bdh.daily.daily.commands.Checkpoint;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 import eu.bdh.daily.daily.DailyListener;
+import eu.bdh.daily.database.DatabaseManager;
+import eu.bdh.daily.database.HibernateUtil;
 import eu.bdh.daily.util.ConfigHelper;
+import eu.bdh.daily.util.PluginBinderModule;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class BdHDaily extends JavaPlugin {
-
-    private static BdHDaily plugin;
+    @Inject
+    private BdHDaily bdHDaily;
 
     @Override
     public void onEnable() {
-        //Define Plugin to Variable
-        plugin = this;
+        //Dependency Injection
+        PluginBinderModule module = new PluginBinderModule(this);
+        Injector injector = module.createInjector();
+        injector.injectMembers(this);
+
         //Erzeugung der ConfigFiles
-        ConfigHelper configHelper = new ConfigHelper(plugin,"lang");
+        ConfigHelper configHelper = new ConfigHelper(bdHDaily,"lang");
         configHelper.createDefaultConfig();
         //TODO Abspeicherung der Configuration
         configHelper.createYamlFile();
 
-        // den Listener registrieren
+        //den Listener registrieren
         this.getServer().getPluginManager().registerEvents(new DailyListener(), this);
 
         // die Befehle registrieren
         this.getCommand("dcheck").setExecutor(new Checkpoint(this));
+
+        DatabaseManager databaseManager = new DatabaseManager(new HibernateUtil(bdHDaily));
+        databaseManager.runDB();
 
     }
 
@@ -53,7 +63,4 @@ public class BdHDaily extends JavaPlugin {
 
 
     //Getter and Setter
-    public static BdHDaily getPlugin() {
-        return plugin;
-    }
 }

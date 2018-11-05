@@ -27,6 +27,7 @@ import eu.bdh.daily.database.HibernateUtil;
 import eu.bdh.daily.util.ConfigHelper;
 import eu.bdh.daily.util.PluginBinderModule;
 import org.bukkit.plugin.java.JavaPlugin;
+import eu.bdh.daily.commands.Checkpoint;
 
 public class BdHDaily extends JavaPlugin {
     @Inject

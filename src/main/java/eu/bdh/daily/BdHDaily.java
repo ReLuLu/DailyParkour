@@ -27,6 +27,7 @@ import eu.bdh.daily.database.HibernateUtil;
 import eu.bdh.daily.util.ConfigHelper;
 import eu.bdh.daily.util.PluginBinderModule;
 import org.bukkit.plugin.java.JavaPlugin;
+import eu.bdh.daily.daily.commands.Checkpoint;
 
 public class BdHDaily extends JavaPlugin {
     @Inject
@@ -48,9 +49,8 @@ public class BdHDaily extends JavaPlugin {
         //den Listener registrieren
         this.getServer().getPluginManager().registerEvents(new DailyListener(), this);
 
-        //die Befehle registrieren
-        //NullPointer?!
-        //this.getCommand("dcheck").setExecutor(new Checkpoint());
+        // die Befehle registrieren
+        this.getCommand("dcheck").setExecutor(new Checkpoint(this));
 
         DatabaseManager databaseManager = new DatabaseManager(new HibernateUtil(bdHDaily));
         databaseManager.runDB();

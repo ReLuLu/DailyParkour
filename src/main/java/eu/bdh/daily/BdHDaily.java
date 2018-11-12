@@ -27,7 +27,9 @@ import eu.bdh.daily.database.HibernateUtil;
 import eu.bdh.daily.util.ConfigHelper;
 import eu.bdh.daily.util.PluginBinderModule;
 import org.bukkit.plugin.java.JavaPlugin;
+
 import eu.bdh.daily.daily.commands.Checkpoint;
+import eu.bdh.daily.daily.commands.Dback;
 
 public class BdHDaily extends JavaPlugin {
     @Inject
@@ -51,6 +53,7 @@ public class BdHDaily extends JavaPlugin {
 
         // die Befehle registrieren
         this.getCommand("dcheck").setExecutor(new Checkpoint(this));
+        this.getCommand("dback").setExecutor(new Dback(this));
 
         DatabaseManager databaseManager = new DatabaseManager(new HibernateUtil(bdHDaily));
         databaseManager.runDB();

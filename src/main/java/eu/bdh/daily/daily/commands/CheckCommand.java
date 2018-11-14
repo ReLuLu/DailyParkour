@@ -29,7 +29,7 @@ import org.bukkit.entity.Player;
 
 /**
  * @author René
- * CheckCommand Klasse zur Abhandlung des Befehls hinter /dcheck
+ * Checkpoint Klasse zur Abhandlung des Befehls hinter /dcheck
  */
 public class CheckCommand implements CommandExecutor {
 

@@ -28,13 +28,13 @@ import org.bukkit.entity.Player;
 
 /**
  * @author René
- * Checkpoint Klasse zur Abhandlung des Befehls hinter /dcheck
+ * BackCommand Klasse zur Abhandlung des Befehls hinter /dback
  */
-public class Dback implements CommandExecutor {
+public class BackCommand implements CommandExecutor {
 
     private BdHDaily plugin;
 
-    public Dback(BdHDaily plugin) {
+    public BackCommand(BdHDaily plugin) {
         this.plugin = plugin;
     }
 
@@ -56,9 +56,9 @@ public class Dback implements CommandExecutor {
             // der Befehl soll nur in der Dailywelt behandelt werden
             if(player.getWorld().getName().equalsIgnoreCase(plugin.getConfig().getString("world"))) {
                 // TODO schöne Ausgabe unso
-                player.sendMessage("Zurück zur Lobby!");
+                player.sendMessage("Zurück zur DailyLobby!");
                 player.getInventory().clear(); // Level bleiben unberührt
-                // TODO Location für die Lobby holen, temporär erzeugen
+                // TODO Location für die DailyLobby holen, temporär erzeugen
                 player.teleport(new Location(player.getWorld(), 0.0, 20.0, 0.0));
             }
 

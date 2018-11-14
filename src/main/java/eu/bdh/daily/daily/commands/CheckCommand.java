@@ -19,24 +19,24 @@
 
 package eu.bdh.daily.daily.commands;
 
+import eu.bdh.daily.BdHDaily;
 import eu.bdh.daily.daily.PlayerManager;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
 /**
  * @author René
- * Checkpoint Klasse zur Abhandlung des Befehls hinter /dcheck
+ * CheckCommand Klasse zur Abhandlung des Befehls hinter /dcheck
  */
-public class Checkpoint implements CommandExecutor {
+public class CheckCommand implements CommandExecutor {
 
     private PlayerManager playerman = PlayerManager.getPlayerManager();
-    private Plugin plugin;
+    private BdHDaily plugin;
 
-    public Checkpoint(Plugin plugin) {
+    public CheckCommand(BdHDaily plugin) {
         this.plugin = plugin;
     }
 
@@ -59,9 +59,9 @@ public class Checkpoint implements CommandExecutor {
                 if(playerman.hasCheckpoint(player.getUniqueId())) {
                     player.teleport(playerman.getCheckpoint(player.getUniqueId()));
                     // TODO mit MessageHandler irgendwann schöne Ausgaben machen
-                    player.sendMessage("Zurück zum Checkpoint");
+                    player.sendMessage("Zurück zum CheckCommand");
                 } else {
-                    player.sendMessage("Noch keinen Checkpoint erreicht");
+                    player.sendMessage("Noch keinen CheckCommand erreicht");
                 }
                 return true;
             }

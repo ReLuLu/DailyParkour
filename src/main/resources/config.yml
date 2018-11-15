@@ -3,3 +3,7 @@ database:
   user: gs
   password: aq23ed
 world: daily
+lobby:
+  xpos: 0.0
+  yheight: 80.0
+  zpos: 0.0

@@ -55,7 +55,6 @@ public class DailyLobby {
     public void setSpawn(Location loc) {
         this.spawnLocation = loc;
         this.setSpawnConfig(loc);
-
     }
 
     /**

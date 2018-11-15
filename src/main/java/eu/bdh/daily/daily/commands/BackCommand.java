@@ -20,7 +20,7 @@
 package eu.bdh.daily.daily.commands;
 
 import eu.bdh.daily.BdHDaily;
-import org.bukkit.Location;
+import eu.bdh.daily.daily.DailyLobby;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -33,9 +33,11 @@ import org.bukkit.entity.Player;
 public class BackCommand implements CommandExecutor {
 
     private BdHDaily plugin;
+    private DailyLobby lobby;
 
-    public BackCommand(BdHDaily plugin) {
+    public BackCommand(BdHDaily plugin, DailyLobby lobby) {
         this.plugin = plugin;
+        this.lobby = lobby;
     }
 
     /**
@@ -58,8 +60,7 @@ public class BackCommand implements CommandExecutor {
                 // TODO schöne Ausgabe unso
                 player.sendMessage("Zurück zur DailyLobby!");
                 player.getInventory().clear(); // Level bleiben unberührt
-                // TODO Location für die DailyLobby holen, temporär erzeugen
-                player.teleport(new Location(player.getWorld(), 0.0, 20.0, 0.0));
+                player.teleport(lobby.getSpawn());
             }
 
         }

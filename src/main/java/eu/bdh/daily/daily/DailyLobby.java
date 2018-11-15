@@ -20,6 +20,7 @@
 package eu.bdh.daily.daily;
 
 import eu.bdh.daily.BdHDaily;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
 /**
@@ -29,27 +30,51 @@ import org.bukkit.Location;
 public class DailyLobby {
 
     private BdHDaily plugin;
+    private Location spawnLocation;
 
+    /**
+     * Konstruktor mit Instanz des Plugins, um auf die Konfiguration zugreifen zu können
+     * @param plugin Instanz des Plugins
+     */
     public DailyLobby(BdHDaily plugin) {
         this.plugin = plugin;
+        // spawnLocation anlegen, geht eigentlich wirklich nur dann gut, wenn man vorher den exakten Weltnamen und die exakten Koordinaten kennt und in die config.yml einträgt, deshalb defaults damit es möglichst keine NPE gibt
+        this.spawnLocation = new Location(
+                Bukkit.getWorld(plugin.getConfig().getString("world", "world")), // default-Welt "world" just in case der Weltname in der config.yml kann keiner Welt des Servers zugeordnet werden
+                Double.parseDouble(plugin.getConfig().getString("lobby.xpos", "0.0")), // default-Koords damit's keine fehlerhafte Location gibt
+                Double.parseDouble(plugin.getConfig().getString("lobby.yheight", "80.0")), // Höhe 80 sollte auf einer Normalwelt reichen
+                Double.parseDouble(plugin.getConfig().getString("lobby.zpos", "0.0"))
+                );
+
     }
 
     /**
      * Setzt den Lobby-Spawnpunkt
-     * @return
+     * @param loc die neue Spawnlocation
      */
-    public boolean setSpawn() {
+    public void setSpawn(Location loc) {
+        this.spawnLocation = loc;
+        this.setSpawnConfig(loc);
 
-        return true;
+    }
+
+    /**
+     * Speichert die Lobby-Spawnpunktinformation in der config.yml ab
+     * @param loc die neue Spawnlocation
+     */
+    private void setSpawnConfig(Location loc) {
+        plugin.getConfig().set("world", loc.getWorld().getName());
+        plugin.getConfig().set("lobby.xpos", loc.getX());
+        plugin.getConfig().set("lobby.yheight", loc.getY());
+        plugin.getConfig().set("lobby.xpos", loc.getZ());
     }
 
     /**
      * Gibt den Lobby-Spawnpunkt zurück
-     * @return
+     * @return spawnLocation den Spawnpunkt der Daily-Lobby
      */
     public Location getSpawn() {
-
-        return new Location(null, 0.0, 20.0, 0.0);
+        return this.spawnLocation;
     }
 
 }

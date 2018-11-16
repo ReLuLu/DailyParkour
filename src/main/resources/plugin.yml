@@ -9,3 +9,7 @@ commands:
     description: Returns the player to the last triggered checkpoint
     usage: /dcheck
     aliases:
+  dback:
+    description: Returns the player back to the lobby
+    usage: /dback
+    aliases:

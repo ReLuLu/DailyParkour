@@ -5,6 +5,10 @@ author: ReLuLu, Clive
 api-version: 1.13
 description: New version of the daily plugin for the BdHR Server
 commands:
+  daily:
+    description: Daily administration tools
+    usage: /daily (setlobby|skip)
+    aliases:
   dcheck:
     description: Returns the player to the last triggered checkpoint
     usage: /dcheck

@@ -24,6 +24,7 @@ import com.google.inject.Injector;
 import eu.bdh.daily.daily.DailyListener;
 import eu.bdh.daily.daily.DailyLobby;
 import eu.bdh.daily.daily.commands.CheckCommand;
+import eu.bdh.daily.daily.commands.DailyCommand;
 import eu.bdh.daily.database.DatabaseManager;
 import eu.bdh.daily.database.HibernateUtil;
 import eu.bdh.daily.util.ConfigHelper;
@@ -56,6 +57,7 @@ public class BdHDaily extends JavaPlugin {
         DailyLobby dailyLobby = new DailyLobby(this);
 
         //die Befehle registrieren
+        this.getCommand("daily").setExecutor(new DailyCommand(this));
         this.getCommand("dcheck").setExecutor(new CheckCommand(this));
         this.getCommand("dback").setExecutor(new BackCommand(this, dailyLobby));
 

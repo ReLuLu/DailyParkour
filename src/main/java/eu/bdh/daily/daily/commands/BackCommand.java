@@ -21,6 +21,7 @@ package eu.bdh.daily.daily.commands;
 
 import eu.bdh.daily.BdHDaily;
 import eu.bdh.daily.daily.DailyLobby;
+import eu.bdh.daily.daily.PlayerManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,6 +33,7 @@ import org.bukkit.entity.Player;
  */
 public class BackCommand implements CommandExecutor {
 
+    private PlayerManager playerman = PlayerManager.getPlayerManager();
     private BdHDaily plugin;
     private DailyLobby lobby;
 
@@ -58,8 +60,15 @@ public class BackCommand implements CommandExecutor {
             // der Befehl soll nur in der Dailywelt behandelt werden
             if(player.getWorld().getName().equalsIgnoreCase(plugin.getConfig().getString("world"))) {
                 // TODO schöne Ausgabe unso
+                // Textnachricht an den Spieler
                 player.sendMessage("Zurück zur DailyLobby!");
-                player.getInventory().clear(); // Level bleiben unberührt
+                // Inventar löschen, aber Level bleiben unberührt
+                player.getInventory().clear();
+                // letzten Checkpoint löschen
+                if(playerman.hasCheckpoint(player.getUniqueId())) {
+                    playerman.delCheckpoint(player.getUniqueId());
+                }
+                // Spieler in die Lobby teleportieren
                 player.teleport(lobby.getSpawn());
             }
 

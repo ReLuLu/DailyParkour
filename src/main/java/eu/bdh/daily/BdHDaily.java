@@ -57,7 +57,7 @@ public class BdHDaily extends JavaPlugin {
         DailyLobby dailyLobby = new DailyLobby(this);
 
         //die Befehle registrieren
-        this.getCommand("daily").setExecutor(new DailyCommand(this));
+        this.getCommand("daily").setExecutor(new DailyCommand(this, dailyLobby));
         this.getCommand("dcheck").setExecutor(new CheckCommand(this));
         this.getCommand("dback").setExecutor(new BackCommand(this, dailyLobby));
 

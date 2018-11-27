@@ -67,39 +67,7 @@ public class DailyCommand implements CommandExecutor {
                  */
                 case "setlobby":
 
-                    // Lobby Spawnpunkt via getLocation() setzen
-                    if(comparams.length == 1) {
-
-                        Location temploc = player.getLocation();
-                        lobby.setSpawn(temploc);
-                        // TODO schöne Nachricht
-                        player.sendMessage("Daily Lobby Spawnpunkt "
-                                + temploc.getX() + " / "
-                                + temploc.getY() + " / "
-                                + temploc.getZ() + "gesetzt!");
-                    }
-
-                    // Lobby Spawnpunkt via Parameter setzen
-                    else if(comparams.length == 4) {
-
-                        try {
-                            // Koordinaten aus den Befehlsparametern auslesen
-                            Double x = Double.valueOf(comparams[1]);
-                            Double y = Double.valueOf(comparams[2]);
-                            Double z = Double.valueOf(comparams[3]);
-                            Location temploc = new Location(player.getWorld(), x, y, z);
-                            lobby.setSpawn(temploc);
-                            // Nachricht an den Spieler
-                            // TODO schöne Nachricht
-                            player.sendMessage("Daily Lobby Spawnpunkt "
-                                    + temploc.getX() + " / "
-                                    + temploc.getY() + " / "
-                                    + temploc.getZ() + "gesetzt!");
-                        } catch(Exception e) {
-                            // Hilfsauflistung
-                            defaultMessage(player);
-                        }
-                    }
+                    setlobby(player, comparams);
                     break;
 
                 /*
@@ -130,4 +98,46 @@ public class DailyCommand implements CommandExecutor {
         player.sendMessage("/daily setlobby, /daily setlobby <x y z>");
         player.sendMessage("/daily skip");
     }
+
+    /**
+     * Unterbefehl setlobby
+     * @param p der den Befehl auslösender Spieler
+     */
+    private void setlobby(Player p, String[] params) {
+        // Lobby Spawnpunkt via getLocation() setzen
+        if(params.length == 1) {
+
+            Location temploc = p.getLocation();
+            lobby.setSpawn(temploc);
+            // TODO schöne Nachricht
+            p.sendMessage("Daily Lobby Spawnpunkt "
+                    + temploc.getX() + " / "
+                    + temploc.getY() + " / "
+                    + temploc.getZ() + "gesetzt!");
+        }
+
+        // Lobby Spawnpunkt via Parameter setzen
+        else if(params.length == 4) {
+
+            try {
+                // Koordinaten aus den Befehlsparametern auslesen
+                Double x = Double.valueOf(params[1]);
+                Double y = Double.valueOf(params[2]);
+                Double z = Double.valueOf(params[3]);
+                Location temploc = new Location(p.getWorld(), x, y, z);
+                lobby.setSpawn(temploc);
+                // Nachricht an den Spieler
+                // TODO schöne Nachricht
+                p.sendMessage("Daily Lobby Spawnpunkt "
+                        + temploc.getX() + " / "
+                        + temploc.getY() + " / "
+                        + temploc.getZ() + "gesetzt!");
+            } catch(Exception e) {
+                // Hilfsauflistung
+                defaultMessage(p);
+            }
+        }
+        
+    }
+
 }

@@ -63,6 +63,15 @@ public class PlayerManager {
     }
 
     /**
+     * Löscht ein Spieler-/Checkpointmapping aus der Checkpointliste
+     * @param uuid die UUID des Spielers
+     * @return die bisherige Location vom Checkpoint
+     */
+    public Location delCheckpoint(UUID uuid) {
+        return playercheckpoints.remove(uuid);
+    }
+
+    /**
      * Statischer Getter für den PlayerManager, erzeugt einen neuen wenn noch keiner vorhanden ist
      * @return das PlayerManager Objekt
      */

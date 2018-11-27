@@ -66,6 +66,7 @@ public class DailyLobby {
         plugin.getConfig().set("lobby.xpos", loc.getX());
         plugin.getConfig().set("lobby.yheight", loc.getY());
         plugin.getConfig().set("lobby.xpos", loc.getZ());
+        plugin.saveConfig();
     }
 
     /**
